@@ -1,6 +1,4 @@
-import Paddle from "./paddle";
-import InputHandler from "./input";
-import Rabbit from "./rabbit";
+import Game from "./game";
 
 const canvas = document.getElementById("gameScreen");
 
@@ -11,12 +9,8 @@ const GAME_HEIGHT = 600;
 
 ctx.fillRect(20, 20, 50, 50);
 
-let paddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
-let rabbit = new Rabbit();
-
-paddle.draw(ctx);
-
-new InputHandler(paddle);
+let game = new Game(GAME_WIDTH, GAME_HEIGHT);
+game.start();
 
 let lastTime = 0;
 
@@ -25,9 +19,8 @@ function gameLoop(timestamp) {
   lastTime = timestamp;
 
   ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-  paddle.update(deltaTime);
-  paddle.draw(ctx);
-  rabbit.draw(ctx);
+  game.update(deltaTime);
+  game.draw(ctx);
 
   requestAnimationFrame(gameLoop);
 }
