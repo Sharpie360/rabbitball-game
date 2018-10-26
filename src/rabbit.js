@@ -1,3 +1,5 @@
+import { detectCollision } from "./collisionDetection";
+
 export default class Rabbit {
   constructor(game) {
     this.image = document.getElementById("img-rabbit");

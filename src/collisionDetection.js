@@ -1,17 +1,19 @@
 export function detectCollision(rabbit, gameObject) {
-  let topOfRabbit = this.position.y;
-  let bottomOfRabbit = this.position.y + this.size;
+  let topOfRabbit = rabbit.position.y;
+  let bottomOfRabbit = rabbit.position.y + rabbit.size;
 
-  let topOfPaddle = this.game.paddle.position.y;
-  let paddleLeftSide = this.game.paddle.position.x;
-  let paddleRightSide = this.game.paddle.position.x + this.game.paddle.width;
-
+  let objectTopSide = gameObject.position.y;
+  let objectLeftSide = gameObject.position.x;
+  let objectRightSide = gameObject.position.x + gameObject.width;
+  let objectBottomSide = gameObject.position.y + gameObject.height;
   if (
-    bottomOfRabbit >= topOfPaddle &&
-    this.position.x >= paddleLeftSide &&
-    this.position.x + this.size <= paddleRightSide
+    bottomOfRabbit >= objectTopSide &&
+    topOfRabbit <= objectBottomSide &&
+    rabbit.position.x >= objectLeftSide &&
+    rabbit.position.x + rabbit.size <= objectRightSide
   ) {
-    this.speed.y = -this.speed.y;
-    this.position.y = this.game.paddle.position.y - this.size;
+    return true;
+  } else {
+    return false;
   }
 }
