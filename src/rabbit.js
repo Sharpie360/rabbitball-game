@@ -9,8 +9,8 @@ export default class Rabbit {
     this.gameWidth = game.gameWidth;
     this.gameHeight = game.gameHeight;
 
-    this.position = { x: 10, y: 10 };
-    this.speed = { x: 10, y: 5 };
+    this.position = { x: 100, y: this.gameHeight - 100 };
+    this.speed = { x: 7, y: -7 };
     this.size = 40;
   }
 
