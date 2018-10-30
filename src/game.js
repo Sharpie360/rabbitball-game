@@ -30,6 +30,7 @@ export default class Game {
   }
 
   update(deltaTime) {
+    if (this.gamestate === GAMESTATE.PAUSED) return;
     this.gameObjects.forEach(object => object.update(deltaTime));
 
     this.gameObjects = this.gameObjects.filter(
@@ -41,5 +42,11 @@ export default class Game {
     this.gameObjects.forEach(object => object.draw(ctx));
   }
 
-  togglePause() {}
+  togglePause() {
+    if (this.gamestate === GAMESTATE.PAUSED) {
+      this.gamestate = GAMESTATE.RUNNING;
+    } else {
+      this.gamestate = GAMESTATE.PAUSED;
+    }
+  }
 }
