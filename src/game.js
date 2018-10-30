@@ -2,7 +2,7 @@ import InputHandler from "./input";
 import Paddle from "./paddle";
 import Rabbit from "./rabbit";
 import Brick from "./brick";
-import { buildLevel, level1, level2 } from "./levels";
+import { buildLevel, level3 } from "./levels";
 
 const GAMESTATE = {
   PAUSED: 0,
@@ -22,7 +22,7 @@ export default class Game {
     this.paddle = new Paddle(this);
     this.rabbit = new Rabbit(this);
 
-    let bricks = buildLevel(this, level2);
+    let bricks = buildLevel(this, level3);
 
     this.gameObjects = [this.rabbit, this.paddle, ...bricks];
 
@@ -30,6 +30,7 @@ export default class Game {
   }
 
   update(deltaTime) {
+    if (this.gamestate === GAMESTATE.PAUSED) return;
     this.gameObjects.forEach(object => object.update(deltaTime));
 
     this.gameObjects = this.gameObjects.filter(
@@ -41,5 +42,11 @@ export default class Game {
     this.gameObjects.forEach(object => object.draw(ctx));
   }
 
-  togglePause() {}
+  togglePause() {
+    if (this.gamestate === GAMESTATE.PAUSED) {
+      this.gamestate = GAMESTATE.RUNNING;
+    } else {
+      this.gamestate = GAMESTATE.PAUSED;
+    }
+  }
 }
