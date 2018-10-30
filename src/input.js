@@ -19,7 +19,6 @@ export default class InputHandler {
     document.addEventListener("keyup", e => {
       switch (e.key) {
         default:
-          console.log("use left right arrow keys");
           break;
         case "ArrowLeft":
           if (paddle.speed < 0) paddle.stop();
