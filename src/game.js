@@ -66,8 +66,8 @@ export default class Game {
     }
   }
 
-  gameOver() {
-    this.gamestate = GAMESTATE.GAMEOVER;
-    console.log("game over");
-  }
+  // gameOver() {
+  //   this.gamestate = GAMESTATE.GAMEOVER;
+  //   console.log("game over");
+  // }
 }

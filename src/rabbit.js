@@ -52,8 +52,8 @@ export default class Rabbit {
       this.position.y = this.game.paddle.position.y - this.size;
     }
 
-    if (bottomOfBall >= this.gameHeight) {
-      this.game.gameOver();
-    }
+    // if (bottomOfBall >= this.gameHeight) {
+    //   this.game.gameOver();
+    // }
   }
 }
