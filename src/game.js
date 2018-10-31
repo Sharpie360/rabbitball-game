@@ -30,7 +30,13 @@ export default class Game {
   }
 
   update(deltaTime) {
-    if (this.gamestate === GAMESTATE.PAUSED) return;
+    if (
+      this.gamestate === GAMESTATE.PAUSED ||
+      this.gamestate === GAMESTATE.MENU ||
+      this.gamestate === GAMESTATE.GAMEOVER
+    )
+      return;
+
     this.gameObjects.forEach(object => object.update(deltaTime));
 
     this.gameObjects = this.gameObjects.filter(
@@ -40,6 +46,17 @@ export default class Game {
 
   draw(ctx) {
     this.gameObjects.forEach(object => object.draw(ctx));
+
+    if (this.gamestate === GAMESTATE.PAUSED) {
+      ctx.rect(0, 0, this.gameWidth, this.gameHeight);
+      ctx.fillStyle = "rgba(0, 0, 0, .5)";
+      ctx.fill();
+
+      ctx.font = "30px Arial";
+      ctx.fillStyle = "#fff";
+      ctx.textAlign = "center";
+      ctx.fillText("Game Paused", this.gameWidth / 2, this.gameHeight / 2);
+    }
   }
 
   togglePause() {
@@ -49,4 +66,10 @@ export default class Game {
       this.gamestate = GAMESTATE.PAUSED;
     }
   }
+
+  // gameOver() {
+  //   this.gamestate = GAMESTATE.GAMEOVER;
+  //   console.log("game over");
+  // }
+  
 }

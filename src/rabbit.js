@@ -24,7 +24,7 @@ export default class Rabbit {
     );
   }
 
-  update(deltaTime) {
+  update(deltaTime, game) {
     this.position.x += this.speed.x;
     this.position.y += this.speed.y;
 
@@ -51,5 +51,9 @@ export default class Rabbit {
       this.speed.y = -this.speed.y;
       this.position.y = this.game.paddle.position.y - this.size;
     }
+
+    // if (bottomOfBall >= this.gameHeight) {
+    //   this.game.gameOver();
+    // }
   }
 }
