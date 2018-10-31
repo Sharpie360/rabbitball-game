@@ -36,6 +36,7 @@ export default class Game {
       this.gamestate === GAMESTATE.GAMEOVER
     )
       return;
+
     this.gameObjects.forEach(object => object.update(deltaTime));
 
     this.gameObjects = this.gameObjects.filter(
@@ -70,4 +71,5 @@ export default class Game {
   //   this.gamestate = GAMESTATE.GAMEOVER;
   //   console.log("game over");
   // }
+  
 }
